@@ -6,7 +6,7 @@ const add_item_typename=document.getElementById("add_item_typename");
 const add_item_count=document.getElementById("add_item_count");
 const delete_item_typename=document.getElementById("delete_item_typename");
 const delete_item_count=document.getElementById("delete_item_count");
-const apiurl="/api/";
+const apiurl="/";
 
 let result_pre=document.createElement("pre");
 result_box.appendChild(result_pre);
@@ -177,5 +177,6 @@ button3.addEventListener("click",add_item);
 
 const button4=document.getElementById("button4");
 button4.addEventListener("click",delete_item);
+
 
 
