@@ -1,20 +1,10 @@
-# 使用官方 Python 运行时作为基础镜像
 FROM python:3.11-slim
-
-# 设置工作目录
 WORKDIR /app
-
-# 首先复制依赖列表文件，这可以利用Docker的缓存层加速后续构建
-COPY backend/requirements.txt .
-
-# 安装项目依赖
+# 注意路径：从 my_porject/backend 复制
+COPY my_porject/backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-
-# 将整个项目代码复制到容器中
-COPY . .
-
-# 声明容器运行时监听的端口（Railway会自动注入PORT环境变量）
+# 注意路径：复制整个 my_porject 文件夹的内容
+COPY my_porject/ .
 EXPOSE 8000
-
-# 启动 FastAPI 应用
+# 启动命令路径不变，因为代码已被复制到 /app
 CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
