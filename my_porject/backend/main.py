@@ -26,7 +26,8 @@ app.add_middleware(
 )
 
 # 靜態文件服務
-app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
+# app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
+app.mount("/", StaticFiles(directory="./frontend", html=True), name="frontend")
 
 # initialize "borrow.db"
 @app.on_event("startup")
@@ -198,3 +199,4 @@ def delete_item(items:delete_item_input):
         cur.execute("update types set count=count-? where id=?",(items.count,typeid))
         cur.execute("delete from items where id in(select id from items where typeid=? limit ?)",(typeid,items.count))
     return {"message":"delete_item successful!"}
+
