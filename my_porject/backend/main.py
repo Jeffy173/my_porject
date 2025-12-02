@@ -133,7 +133,7 @@ class add_type_input(BaseModel):
     pw:str
     name:str
     describe:Optional[str]
-@app.post("/add_type/")
+@app.post("/api/add_type/")
 def add_type(t:add_type_input):
     if new_hash(t.pw)!=pw:
         raise HTTPException(status_code=401,detail="wrong password!")
@@ -204,6 +204,7 @@ def delete_item(items:delete_item_input):
         cur.execute("update types set count=count-? where id=?",(items.count,typeid))
         cur.execute("delete from items where id in(select id from items where typeid=? limit ?)",(typeid,items.count))
     return {"message":"delete_item successful!"}
+
 
 
 
