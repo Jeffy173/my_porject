@@ -32,7 +32,8 @@ app.add_middleware(
 
 # 靜態文件服務
 # app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
-app.mount("/", StaticFiles(directory="./frontend", html=True), name="frontend")
+# app.mount("/", StaticFiles(directory="./frontend", html=True), name="frontend")
+# put it end
 
 # initialize "borrow.db"
 @app.on_event("startup")
@@ -208,4 +209,5 @@ def delete_item(items:delete_item_input):
 
 
 
+app.mount("/", StaticFiles(directory="./frontend", html=True), name="frontend")
 
