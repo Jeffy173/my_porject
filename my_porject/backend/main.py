@@ -103,11 +103,11 @@ def new_hash(s:str)->str:
     return hashlib.sha256(s.encode()).hexdigest()
 pw=new_hash("123456")
 
-@app.get("/")
+@app.get("/api/")
 def home():
     return {"message":"the home"}
 
-@app.get("/get_types/")
+@app.get("/api/get_types/")
 def get_types():
     with DatabaseConnectCursor("borrow.db") as cur:
         cur.execute("select * from types")
@@ -118,7 +118,7 @@ def get_types():
             "data":[dict(zip(columns_names,l)) for l in data]
         }
 
-@app.get("/get_items/")
+@app.get("/api/get_items/")
 def get_items():
     with DatabaseConnectCursor("borrow.db") as cur:
         cur.execute("select * from items")
@@ -149,7 +149,7 @@ class add_item_input(BaseModel):
     pw:str
     typename:str
     count:int
-@app.post("/add_item/")
+@app.post("/api/add_item/")
 def add_item(items:add_item_input):
     if new_hash(items.pw)!=pw:
         raise HTTPException(status_code=401,detail="wrong password!")
@@ -169,7 +169,7 @@ def add_item(items:add_item_input):
 class delete_type_input(BaseModel):
     pw:str
     name:str
-@app.delete("/delete_type/")
+@app.delete("/api/delete_type/")
 def delete_type(t:delete_type_input):
     if new_hash(t.pw)!=pw:
         raise HTTPException(status_code=401,detail="wrong password!")
@@ -187,7 +187,7 @@ class delete_item_input(BaseModel):
     pw:str
     typename:str
     count:int
-@app.delete("/delete_item/")
+@app.delete("/api/delete_item/")
 def delete_item(items:delete_item_input):
     if new_hash(items.pw)!=pw:
         raise HTTPException(status_code=401,detail="wrong password!")
@@ -204,6 +204,7 @@ def delete_item(items:delete_item_input):
         cur.execute("update types set count=count-? where id=?",(items.count,typeid))
         cur.execute("delete from items where id in(select id from items where typeid=? limit ?)",(typeid,items.count))
     return {"message":"delete_item successful!"}
+
 
 
 
