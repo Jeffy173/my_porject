@@ -14,15 +14,16 @@ app=FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-    # 线上环境：你的Railway域名
-    "https://endearing-alignment.up.railway.app",
-    # 本地开发：常见的前端开发服务器端口
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://localhost:8080",
-    "http://127.0.0.1:8080",
-    "http://localhost:5500", # 一些Live Server的默认端口
-    "http://127.0.0.1:5500",
+    # # 线上环境：你的Railway域名
+    # "https://endearing-alignment.up.railway.app",
+    # # 本地开发：常见的前端开发服务器端口
+    # "http://localhost:3000",
+    # "http://127.0.0.1:3000",
+    # "http://localhost:8080",
+    # "http://127.0.0.1:8080",
+    # "http://localhost:5500", # 一些Live Server的默认端口
+    # "http://127.0.0.1:5500",
+        "*"
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
@@ -203,5 +204,6 @@ def delete_item(items:delete_item_input):
         cur.execute("update types set count=count-? where id=?",(items.count,typeid))
         cur.execute("delete from items where id in(select id from items where typeid=? limit ?)",(typeid,items.count))
     return {"message":"delete_item successful!"}
+
 
 
