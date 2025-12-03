@@ -7,6 +7,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import os
 
+# test :) ->locoal_vscode_github_desktop_git
+
 # create api
 app=FastAPI()
 
