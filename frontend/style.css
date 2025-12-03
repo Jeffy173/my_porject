@@ -1,0 +1,124 @@
+.box0{
+    border:2px black solid;
+    padding:10px;
+    background-color:#faebd7;
+    height:min-content;
+    width:500px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.t1,.t2,.t3,.t4{
+    border-collapse:collapse;
+    border-spacing:0;
+    border:2px white solid;
+}
+
+.t1{
+    background-color:#76d3a3;
+}
+
+.t2{
+    background-color:#5bb6ee;
+    width:400px;
+    table-layout: fixed;
+}
+
+.t3{
+    background-color:#fab464;
+}
+
+.t4{
+    background-color:#f87d7f;
+}
+
+td{
+    border:2px white solid;
+    text-align:center;
+    width:200px;
+}
+
+.t2 td{
+    word-wrap: break-word;      /* 允許長單詞換行 */
+    word-break: break-all;      /* 強制在任意字符處換行 */
+    white-space: normal;        /* 確保空白正常處理 */
+}
+
+.t2_td_id{
+    width:30px;
+}
+
+.t2_td_name{
+    width:100px;
+}
+
+.t2_td_describe{
+    width:200px;
+}
+
+.t2_td_count{
+    width:70px;
+}
+
+.box1,.box2,.box3,.box4{
+    color:black;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    height:min-content;
+    width:500px;
+}
+
+.button2_box{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:80px;
+    width:70px;
+    padding:0px 10px 0px 10px;
+}
+
+.button{
+    height:36px;
+    width:100px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border:2px white solid;
+    border-radius:20px;
+    color:white;
+    background-color:#6495ed;
+}
+
+#button2_1,#button2_2{
+    width:66px;
+}
+
+#result_box{
+    display:flex;
+    flex-direction:row;
+    height:min-content;
+    width:500px;
+    justify-content:flex-start;
+    align-items:center;
+}
+
+.result_text{
+    color:red;
+}
+
+pre {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    white-space: pre-wrap;      /* 允許自動換行 */
+    word-wrap: break-word;      /* 長單詞換行 */
+    overflow-x: auto;           /* 水平滾動而不是飛出 */
+    padding: 12px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.4;
+}
