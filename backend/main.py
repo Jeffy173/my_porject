@@ -156,6 +156,8 @@ def add_item(items:add_item_input):
             raise HTTPException(status_code=404,detail=f"type {repr(items.typename)} is not exists!")
         if items.count<=0:
             raise HTTPException(status_code=400,detail="count must be a positive integer!")
+        if items.count>100:
+            raise HTTPException(status_code=400,detail="too big integer!")
         typeid=data[0][0]
         cur.execute("update types set count=count+? where id=?",(items.count, typeid))
         for i in range(items.count):
