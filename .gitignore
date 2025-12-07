@@ -1,0 +1,26 @@
+# 忽略整个个人文件目录
+private_files/
+
+# 忽略 Python 编译缓存目录
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 忽略你指定的特定文件
+backend/run.py
+borrow.db
+
+# 忽略虚拟环境目录（如果存在，强烈推荐）
+venv/
+env/
+.venv/
+
+# 忽略操作系统生成的无关文件
+.DS_Store
+Thumbs.db
+
+# 忽略IDE或编辑器配置文件（可选）
+.vscode/
+.idea/
+*.swp
+*.swo

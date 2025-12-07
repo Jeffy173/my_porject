@@ -16,13 +16,13 @@ app.add_middleware(
     allow_origins=[
         # 线上环境：你的Railway域名
         "https://endearing-alignment.up.railway.app",
-        # # 本地开发：常见的前端开发服务器端口
-        # "http://localhost:3000",
-        # "http://127.0.0.1:3000",
-        # "http://localhost:8080",
-        # "http://127.0.0.1:8080",
-        # "http://localhost:5500", # 一些Live Server的默认端口
-        # "http://127.0.0.1:5500",
+        # 本地开发：常见的前端开发服务器端口
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:8080",
+        "http://127.0.0.1:8080",
+        "http://localhost:5500", # 一些Live Server的默认端口
+        "http://127.0.0.1:5500",
         # "*"
     ],
     allow_credentials=True,
