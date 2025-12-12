@@ -32,6 +32,7 @@ app.add_middleware(
 
 # initialize "borrow.db"
 # local not need, but railway need!!!!
+import fastapi
 print(f"Railway FastAPI 版本: {fastapi.__version__}")
 @app.on_event("startup")
 def init_database():
