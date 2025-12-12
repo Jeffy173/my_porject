@@ -8,6 +8,7 @@ __pycache__/
 
 # 忽略你指定的特定文件
 backend/run.py
+backend/reset_database.py
 borrow.db
 
 # 忽略虚拟环境目录（如果存在，强烈推荐）
