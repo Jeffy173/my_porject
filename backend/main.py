@@ -30,41 +30,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# initialize "borrow.db"
-# local not need, but railway need!!!!
-import fastapi
-print(f"Railway FastAPI 版本: {fastapi.__version__}")
-@app.on_event("startup")
-def init_database():
-    # 只在數據庫不存在時初始化
-    if not os.path.exists("borrow.db"):
-        open("borrow.db","w").close()
-        with DatabaseConnectCursor("borrow.db") as cur:
-            cur.execute("""
-                create table types(
-                    id integer primary key autoincrement,
-                    name text unique,
-                    describe text default '',
-                    count integer default 0
-                );
-            """)
-            cur.execute("""
-                create table items(
-                    id integer primary key autoincrement,
-                    typeid integer,
-                    foreign key(typeid) references types(id)
-                );
-            """)
-        print("數據庫初始化完成")
-
-# 可選：測試用的重置端點
-@app.post("/api/reset_db")
-def reset_db():
-    if os.path.exists("borrow.db"):
-        os.remove("borrow.db")
-    init_database()
-    return {"message":"數據庫已重置為初始狀態"}
-
 # database manager
 class DatabaseConnectCursor:
     def __init__(self,name:str):
@@ -96,6 +61,50 @@ class DatabaseConnectCursor:
                     self.cur.close()
                 self.conn.close()
         return False
+
+# initialize "borrow.db" when not exist
+if not os.path.exists("borrow.db"):
+    open("borrow.db","w").close()
+    with DatabaseConnectCursor("borrow.db") as cur:
+        cur.execute("""
+            create table types(
+                id integer primary key autoincrement,
+                name text unique,
+                describe text default '',
+                count integer default 0
+            );
+        """)
+        cur.execute("""
+            create table items(
+                id integer primary key autoincrement,
+                typeid integer,
+                foreign key(typeid) references types(id)
+            );
+        """)
+    print("database initialize successful!")
+
+@app.post("/api/reset_database")
+def reset_db():
+    if os.path.exists("borrow.db"):
+        os.remove("borrow.db")
+        open("borrow.db","w").close()
+        with DatabaseConnectCursor("borrow.db") as cur:
+            cur.execute("""
+                create table types(
+                    id integer primary key autoincrement,
+                    name text unique,
+                    describe text default '',
+                    count integer default 0
+                );
+            """)
+            cur.execute("""
+                create table items(
+                    id integer primary key autoincrement,
+                    typeid integer,
+                    foreign key(typeid) references types(id)
+                );
+            """)
+    return {"message":"database initialize successful!"}
 
 # password hashing
 def new_hash(s:str)->str:
