@@ -31,29 +31,29 @@ app.add_middleware(
 )
 
 # initialize "borrow.db"
-# test
-@app.on_event("startup")
-def init_database():
-    # 只在數據庫不存在時初始化
-    if not os.path.exists("borrow.db"):
-        open("borrow.db","w").close()
-        with DatabaseConnectCursor("borrow.db") as cur:
-            cur.execute("""
-                create table types(
-                    id integer primary key autoincrement,
-                    name text unique,
-                    describe text default '',
-                    count integer default 0
-                );
-            """)
-            cur.execute("""
-                create table items(
-                    id integer primary key autoincrement,
-                    typeid integer,
-                    foreign key(typeid) references types(id)
-                );
-            """)
-        print("數據庫初始化完成")
+# # test
+# @app.on_event("startup")
+# def init_database():
+#     # 只在數據庫不存在時初始化
+#     if not os.path.exists("borrow.db"):
+#         open("borrow.db","w").close()
+#         with DatabaseConnectCursor("borrow.db") as cur:
+#             cur.execute("""
+#                 create table types(
+#                     id integer primary key autoincrement,
+#                     name text unique,
+#                     describe text default '',
+#                     count integer default 0
+#                 );
+#             """)
+#             cur.execute("""
+#                 create table items(
+#                     id integer primary key autoincrement,
+#                     typeid integer,
+#                     foreign key(typeid) references types(id)
+#                 );
+#             """)
+#         print("數據庫初始化完成")
 
 # 可選：測試用的重置端點
 @app.post("/api/reset_db")
