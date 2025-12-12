@@ -31,6 +31,7 @@ app.add_middleware(
 )
 
 # initialize "borrow.db"
+# test
 @app.on_event("startup")
 def init_database():
     # 只在數據庫不存在時初始化
