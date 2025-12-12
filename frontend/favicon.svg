@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- 简单书架图标示例 -->
+  <rect x="20" y="30" width="60" height="50" rx="5" fill="#4f46e5" stroke="#3730a3" stroke-width="2"/>
+  <rect x="25" y="35" width="50" height="5" fill="#818cf8"/>
+  <rect x="25" y="45" width="50" height="5" fill="#818cf8"/>
+  <rect x="25" y="55" width="50" height="5" fill="#818cf8"/>
+  <rect x="15" y="75" width="70" height="10" rx="3" fill="#6366f1"/>
+  <!-- 可选：添加文字 "借" -->
+  <text x="50" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="white">借</text>
+</svg>
